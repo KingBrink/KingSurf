@@ -12,6 +12,7 @@ router.route('/')
     .get(controller.itemsInCart)
     .post(controller.addToCartTable)
     .delete(controller.deleteFromCart)
+    .patch(controller.editCart)
 
 
 export default router;
