@@ -14,11 +14,19 @@ const PORT = process.env.MYSQL_ADDON_PORT || 1738;
 
 app.use(express.static('./Static'));
 
-// app.use(cors({
-//     origin: 'https://w-commerce-4c78f.web.app',
-//     credentials: true
-// }));
-
+app.use(cors({
+    origin: 'https://w-commerce-4c78f.web.app',
+    credentials: true
+}));
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Credentials", "true");
+    res.header("Access-Control-Allow-Methods", "*");
+    res.header("Access-Control-Request-Methods", "*");
+    res.header("Access-Control-Allow-Headers", "*");
+    res.header("Access-Control-Expose-Headers", "Authorization");
+    next();
+});
 app.use(express.json());
 app.use(cookieParser());
 
@@ -42,14 +50,3 @@ app.listen(PORT, console.log(`server running on http://localhost:${PORT}`));
 
 
 
-// {
-//     "user_profile": "JohnDoe",
-//     "user_email": "JD1@gmail.com",
-//     "user_password": "john",
-//     "user_role": "admin",
-//     "user_image": "nothing"
-// }
- 
-
-{/* <blockquote class="imgur-embed-pub" lang="en" data-id="a/PlyvO0z" data-context="false" ><a href="//imgur.com/a/PlyvO0z"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script> */}
-// https://i.imgur.com/8Pvhmao.mp4
