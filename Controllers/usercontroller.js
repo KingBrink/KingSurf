@@ -18,7 +18,7 @@ const getAllUsers = async (req, res) => {
         res.status(200).json(users);
     } catch (error) {
         console.error('Error in getAllUsers:', error.message);
-        res.status(500).json({ msg: "Server error. Unable to retrieve users." });
+        res.status(500).json({ msg: "Server error. Unable to retrieve all users." });
     }
 };
 
