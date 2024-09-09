@@ -1,70 +1,102 @@
-import { getProducts, getProductByID, editProduct, deleteProduct, addProduct, addToCart } from "../Model/db.js";
+import { getProducts, getProductByID, editProduct, deleteProduct, addProduct } from "../Model/db.js";
 
 export default {
-    allProducts : async (req, res) => {
+    allProducts: async (req, res) => {
+        console.log("Fetching all products...");
         try {
-            res.send( await getProducts(req.body.product_name))
+            const products = await getProducts(req.body.product_name);
+            console.log("Products fetched successfully:", products);
+            res.status(200).json(products);
         } catch (error) {
-            res.status(404).json({
-                msg: "Route does not exist or server is down!"
-            })
+            console.error("Error fetching products:", error);
+            res.status(500).json({ msg: "Unable to retrieve products. Please try again later." });
         }
     },
-    prodByID : async (req, res) => {
+
+    prodByID: async (req, res) => {
+        console.log("Fetching product by ID:", req.params.id);
         try {
-            res.send(await getProductByID(+req.params.id))
-        } catch(error){
-            res.status(404).json({
-                msg: "Cannot find the product you're looking for"
-            })
+            const product = await getProductByID(+req.params.id);
+            if (!product) {
+                console.log("Product not found with ID:", req.params.id);
+                return res.status(404).json({ msg: "Product not found" });
+            }
+            console.log("Product fetched successfully:", product);
+            res.status(200).json(product);
+        } catch (error) {
+            console.error("Error fetching product by ID:", error);
+            res.status(500).json({ msg: "Unable to retrieve the product. Please try again later." });
         }
     },
-    addProductToDB : async (req, res) => {
+
+    addProductToDB: async (req, res) => {
+        console.log("Attempting to add new product:", req.body);
         try {
-            const {product_name, product_desc, product_price, product_img, product_category} = req.body;
+            const { product_name, product_desc, product_price, product_img, product_category } = req.body;
+
+            if (!product_name || !product_price) {
+                console.log("Validation failed: Product name or product_price missing.");
+                return res.status(400).json({ msg: "Product name and product_price are required" });
+            }
+
             await addProduct(product_name, product_desc, product_price, product_img, product_category);
-            res.send(await getProducts());
+            console.log("Product added successfully. Fetching updated product list...");
+            const products = await getProducts();
+            res.status(201).json(products);
         } catch (error) {
-            res.status(404).json({
-                msg: "Unable to add a new product check if all inputs a filled out"
-            })
+            console.error("Error adding product:", error);
+            res.status(500).json({ msg: "Unable to add a new product. Please try again later." });
         }
     },
-    editProductByID : async (req, res) => {
+
+    editProductByID: async (req, res) => {
+        console.log("Attempting to edit product with ID:", req.params.id, "Data:", req.body);
         try {
+            const { product_name, product_desc, product_price, product_img, product_category } = req.body;
 
-            let {product_name, product_desc, product_price, product_img, product_category} = req.body;
+            const product = await getProductByID(+req.params.id);
+            if (!product) {
+                console.log("Product not found with ID:", req.params.id);
+                return res.status(404).json({ msg: "Product not found" });
+            }
 
-            const [product] = await getProductByID(+req.params.id);
-    
-            product_name ? product_name : {product_name} = product
-    
-            product_desc ? product_desc : {product_desc} = product 
-    
-            product_price ? product_price : {product_price} = product
-    
-            product_img ? product_img : {product_img} = product
-    
-            product_category ? product_category : {product_category} = product
-    
-            await editProduct(product_name, product_desc, product_price, product_img, product_category, +req.params.id)
-    
-            res.send(await getProducts())
+            const updatedProduct = {
+                product_name: product_name || product.product_name,
+                product_desc: product_desc || product.product_desc,
+                product_price: product_price || product.product_price,
+                product_img: product_img || product.product_img,
+                product_category: product_category || product.product_category,
+            };
 
+            console.log("Updating product with data:", updatedProduct);
+            await editProduct(updatedProduct, +req.params.id);
+            console.log("Product updated successfully. Fetching updated product list...");
+            const products = await getProducts();
+            res.status(200).json(products);
         } catch (error) {
-            res.status(404).json({
-                msg: "Unable to upadate a product that does not exist"
-            })
+            console.error("Error updating product:", error);
+            res.status(500).json({ msg: "Unable to update the product. Please try again later." });
         }
     },
-    delProductByID : async (req, res) => {
+
+    delProductByID: async (req, res) => {
         try {
-            await deleteProduct(+req.params.id)
-            res.send(await getProducts())
+            console.log("Attempting to delete product with ID:", req.params.id);
+
+            const product = await getProductByID(+req.params.id);
+            if (!product) {
+                console.log("Product not found, ID:", req.params.id);
+                return res.status(404).json({ msg: "Product not found" });
+            }
+
+            await deleteProduct(+req.params.id);
+            console.log("Product deleted, ID:", req.params.id);
+
+            const products = await getProducts();
+            res.status(200).json(products);
         } catch (error) {
-            res.status(404).json({
-                msg: "Cannot delete item it probably doesn't exist"
-            })
+            console.error("Error during product deletion:", error.message);
+            res.status(500).json({ msg: "Unable to delete the product. Please try again later." });
         }
-    }
-}
+    },
+};
