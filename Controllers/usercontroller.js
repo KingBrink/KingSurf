@@ -93,7 +93,7 @@ const deleteUser = async (req, res) => {
         }
 
         await removeUser(+req.params.user_id);
-        res.status(200).json({ msg: 'User successfully deleted' });
+        res.status(200).json({ msg: 'User was successfully deleted' });
     } catch (error) {
         res.status(500).json({ msg: "Unable to delete user. Please try again later." });
     }
