@@ -1,133 +1,56 @@
-import { config } from 'dotenv';
-config();
-import jwt from 'jsonwebtoken'
- 
-const auth = async (req, res, next) => {  
-    let { cookie } = req.headers;
-    
-    // setting the refresh token in an object
-    const refreshTokens = {}
-    
-    let tokenInHeader = cookie && cookie.split('=')[1];
-    
-    if (tokenInHeader === undefined) {
+import jwt from 'jsonwebtoken'; // Ensure jwt is imported
 
-        return res.status(401).send({ msg: "No valid token" });
-        
+// Generate JWT function
+const generateJWT = (user) => {
+    console.log("User object before JWT generation:", user); // Debugging line
+    const payload = {
+        user_email: user.user_email,
+        user_email: user.user_email,
+        user_id: user.user_id, // Ensure user_id is included in the payload
+    };
+
+    try {
+        return jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '1h' });
+    } catch (error) {
+        throw new Error('Error generating JWT: ' + error.message);
     }
-
-    jwt.verify(tokenInHeader, process.env.SECRET_KEY, (err, user) => {
-
-        if (err) {
-
-            if (err.name === 'TokenExpiredError') {
-
-                // reset the token in the header   
-                const refreshToken = req.headers['REFRESH_TOKEN'];
-
-                // if the refresh token exists or...
-                // if the refresh exists at the index
-                if (refreshToken && refreshTokens[refreshToken]) {
-
-                    jwt.verify(refreshToken, process.env.REFRESH_TOKEN, (err, decoded) => {
-
-                        if (err) {
-
-                            return res.status(403).json({ error: 'Invalid Token' });
-
-                        } else {
-                            
-                            const newToken = jwt.sign({ user_email: decoded.user_email }, process.env.REFRESH_TOKEN, { expiresIn: '1d' });
-
-                            res.setHeader('Authorization', newToken);
-                            
-                            next();
-
-                        }
-                    });
-
-                }
-            } else {
-
-                return res.status(403).json({ error: 'Invalid Token' });
-
-            }
-        }
-        req.user_email = user;
-        next();
-    });
 };
 
-export default auth;
+// JWT Verification Middleware
+const auth = (req, res, next) => {
+    console.log("Verifying JWT...");
 
+    try {
+        const authHeader = req.headers.authorization;
+        let token;
 
+        if (authHeader && authHeader.startsWith('Bearer ')) {
+            token = authHeader.split(' ')[1];
+        } else {
+            token = req.cookies.jwt;
+        }
 
+        console.log(`Token received: ${token}`);
 
+        if (!token) {
+            console.log("No valid token found.");
+            return res.status(401).send({ msg: "No valid token" });
+        }
 
-
-
-
-
-
-
-
-
-
-// const auth = async (req, res, next) => {  
-//     let {cookie} = req.headers;
-    
-//     // setting the refresh token in an object
-//     const refreshTokens = {}
-    
-//     // checks if theres a cookie and then splits it
-//     let tokenInHeader = cookie && cookie.split('=')[1];
-//     console.log(tokenInHeader)
-    
-//     if (tokenInHeader === undefined) {
+        const user = jwt.verify(token, process.env.SECRET_KEY);
+        console.log("Token successfully verified:", user);
         
-//         res.status(401).send({msg:"No valid token"});   
-        
-//     } else{
+        if (!user.user_id) {
+            console.log("UserID is missing in the decoded token");
+            return res.status(400).send({ msg: "UserID is missing in the decoded token" });
+        }
 
-//         console.log(tokenInHeader);
+        req.user = user; // Now req.user contains user_id, user_email, user_email
+        next();
+    } catch (err) {
+        console.error('Token verification failed:', err);
+        return res.status(403).json({ error: 'Invalid or expired token' });
+    }
+};
 
-//         jwt.verify(tokenInHeader, process.env.SECRET_KEY, (err, user) => {
-
-//             if (err) {
-
-//                 if(err.name === 'TokenExpiredError') {
-
-//                     // reset the token in the header   
-//                     const refreshToken = req.headers['REFRESH_TOKEN'];
-
-//                     // if the refresh token exists or...
-//                     // if the refresh exists at the index
-//                     if(refreshToken && refreshTokens[refreshToken]){
-
-//                         jwt.verify(refreshToken, process.env.REFRESH_TOKEN, (err, decoded) => {
-
-//                             if(err){
-
-//                                 return res.send(403).json({error: 'Invalid Token'});
-
-//                             } else {
-
-//                                 // Assigns a new token to the user once the 
-//                                 const newToken = jwt.sign({user_email: decoded.user_email}, process.env.REFRESH_TOKEN, {expiresIn: '1d'});
-
-//                                 res.setHeader('Authorization', newToken);
-
-//                                 next(); 
-//                             }
-//                         })
-//                     }
-//                 }
-//             }
-//             req.user_email = user;
-//         });
- 
-//         next();
-//     }
-
-     
-// } 
+export { generateJWT, auth };
