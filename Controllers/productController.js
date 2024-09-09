@@ -9,7 +9,7 @@ export default {
             res.status(200).json(products);
         } catch (error) {
             console.error("Error fetching products:", error);
-            res.status(500).json({ msg: "Unable to retrieve products. Please try again later." });
+            res.status(500).json({ msg: "Unable to retrieve product. Please try again later." });
         }
     },
 
