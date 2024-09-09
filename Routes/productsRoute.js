@@ -1,6 +1,6 @@
 import express from 'express';
 import controller from '../Controllers/productController.js';
-import { auth } from '../middleware/verifyJwt.js'; // Correct case and import as named export
+import { auth } from '../Middleware/verifyJwt.js'; // Correct case and import as named export
 
 const router = express.Router();
 
