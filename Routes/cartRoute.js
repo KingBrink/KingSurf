@@ -1,6 +1,6 @@
 import express from 'express';
 import cartController from '../Controllers/cartController.js';
-import isRoleEqualToAdmin from '../middleware/roleStatus.js';
+import isRoleEqualToAdmin from '../Middleware/roleStatus.js';
 
 const router = express.Router();
 
