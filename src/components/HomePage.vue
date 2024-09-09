@@ -1,13 +1,5 @@
 <template>
-  <section>
-        <div class="welcome-message text-center">
-            <h1>Welcome to Our Store</h1>
-            <div class="icons">
-                <a href="login.html"><i class="bi bi-box-arrow-in-left"></i>Login</a>
-            </div>
-          </div>
-      </section>
-      <section>
+ <section>
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1800">
           <div class="carousel-inner">
             <div class="carousel-item active">
@@ -31,46 +23,30 @@
           </div>
         </div>
       </section>
+
 </template>
 
 <script>
+import ButtonCompVue from './ButtonComp.vue';
+import dividerCompVue from './dividerComp.vue';
+import textRenderVue from './textRender.vue';
 export default {
-
+  props: {
+    msg: String
+  },
+  components : {
+    ButtonCompVue,
+    textRenderVue,
+    dividerCompVue
+  }
 }
 </script>
 
-<style>
 
-.welcome-message {
-    background-color: #333333; /* Black background */
-    padding: 20px 0; /* Padding for spacing */
-    text-align: center;
-    margin-top: 56px; /* Center text */
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .welcome-message h1 {
-    font-size: 1rem; /* Adjust the font size */
-    color: #fff; /* White text color */
-    margin: 0;
-    margin-top: 13px;
-    margin-left: 15px;
-  }
+<style scoped>
 
-
-  .icons{
-    margin-top: 13px;
-    margin-right: 15px;
-    color: #fff;
-  }
-
-  .welcome-message a{
-    color: #fff;
-  }
-
-  .carousel-img {
-    height: 82vh; /* Adjust to the desired height */
+.carousel-img {
+    height: 100vh; /* Adjust to the desired height */
     object-fit: cover;
   }
 
@@ -136,4 +112,5 @@ export default {
   .animate-pop3 {
     animation: zoom-in 1s forwards 0.5s;
   }
+ 
 </style>
