@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 1738;
 app.use(express.static('./Static'));
 
 app.use(cors({
-    origin: 'http://localhost:8080/',
+    origin: 'http://localhost:8080', // Remove trailing slash
     credentials: true
 }));
 
@@ -39,7 +39,6 @@ app.delete('/logout', (req, res) => {
 app.use('/products', auth, productsRoute);
 app.use('/carts', auth, cartRoute);
 app.use('/users', userRoute);
-
 
 // 404 Catcher - After all routes
 app.use((req, res, next) => {
