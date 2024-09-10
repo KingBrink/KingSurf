@@ -1,16 +1,13 @@
 import express from 'express';
 import cartController from '../Controllers/cartController.js';
-import isRoleEqualToAdmin from '../Middleware/roleStatus.js';
+import authenticate from '../Middleware/signToken.js'; // Authentication middleware
 
 const router = express.Router();
 
-// Apply the role-check middleware (auth already applied in index.js)
-router.use(isRoleEqualToAdmin);
+// Ensure users are authenticated to access cart functionality
+router.use(authenticate);
 
-// Define the route to fetch all carts (for admins)
-router.get('/', cartController.allCarts); // New: Fetch all carts for admins
-
-// Define the cart routes that are accessible only by Admin users
+// Define the cart routes that are accessible by registered users
 router.get('/user/:id/carts', cartController.allCartItems);
 router.post('/user/:id/cart', cartController.addToCartTable);
 router.patch('/user/:id/cart/:cartItemId', cartController.editCart);

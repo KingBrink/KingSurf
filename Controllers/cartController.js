@@ -11,7 +11,7 @@ import {
 } from "../Model/db.js";
 
 const cartController = {
-    // New function to fetch all carts (for Admin)
+    // Admin can fetch all carts
     allCarts: async (req, res) => {
         try {
             console.log(`Fetching all carts for Admin user: ${req.user.user_email}`);
@@ -23,6 +23,7 @@ const cartController = {
         }
     },
 
+    // All users can access their cart items
     allCartItems: async (req, res) => {
         try {
             const userProfile = await checkProfile(req.user.user_email);
@@ -33,6 +34,7 @@ const cartController = {
         }
     },
 
+    // Users can add items to their cart
     addToCartTable: async (req, res) => {
         try {
             const { quantity } = req.body;
@@ -47,6 +49,7 @@ const cartController = {
         }
     },
 
+    // Users can remove items from their cart
     deleteFromCart: async (req, res) => {
         try {
             const userProfile = await checkProfile(req.user.user_email);
@@ -58,6 +61,7 @@ const cartController = {
         }
     },
 
+    // Users can edit their cart
     editCart: async (req, res) => {
         try {
             const { product_id, quantity } = req.body;
