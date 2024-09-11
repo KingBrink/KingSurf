@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KingSurf</title>
+</head>
+<body>
+
+    <div class="container">
+        <h1>KingSurf Api</h1>
+    </div>
+
+  
+        <div class="dividerOne"></div>
+
+
+    <table>
+        <tr>
+            <td>Functionality :</td>
+            <td>Url link</td>
+            <td>Method</td>
+        </tr>
+        <tr>
+            <td>AddToCart :</td>
+            <td>http://localhost:8080/cart/:product_id<b>?user_id=3</b></td>
+            <td>post/id?user_id=?</td>
+        </tr>
+        <tr>
+            <td>delFromCart :</td>
+            <td>http://localhost:8080/cart/:id</td>
+            <td>Delete</td>
+        </tr>
+        <tr>
+            <td>Login :</td>
+            <td>http://localhost:8080/login</td>
+            <td>Post</td>
+        </tr>
+        <tr>
+            <td>Logout :</td>
+            <td>http://localhost:8080/logout</td>
+            <td>delete</td>
+        </tr>
+        <tr>
+            <td>singleProduct :</td>
+            <td>http://localhost:8080/products/:id</td>
+            <td>Get</td>
+        </tr>
+        <tr>
+            <td>getAllProducts :</td>
+            <td>http://localhost:8080/products</td>
+            <td>Get</td>
+        </tr>
+        <tr>
+            <td>deleteProduct :</td>
+            <td>http://localhost:8080/products/:id</td>
+            <td>Delete</td>
+        </tr>
+        <tr>
+            <td>editProduct :</td>
+            <td>http://localhost:8080/products/:id</td>
+            <td>Patch</td>
+        </tr>
+        <tr>
+            <td>getAllUsers :</td>
+            <td>http://localhost:8080/users</td>
+            <td>Get</td>
+        </tr>
+        <tr>
+            <td>getUser :</td>
+            <td>http://localhost:8080/users/:id</td>
+            <td>Get</td>
+        </tr>
+        <tr>
+            <td>editUser :</td>
+            <td>http://localhost:8080/users/:id</td>
+            <td>Patch</td>
+        </tr>
+        <tr>
+            <td>addUser :</td>
+            <td>http://localhost:8080/users</td>
+            <td>Post</td>
+        </tr>
+        <tr>
+            <td>deleteUser :</td>
+            <td>http://localhost:8080/users/:id</td>
+            <td>Delete</td>
+        </tr>
+    </table>
+
+    <style>
+        /* Style for the table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 25px 0;
+      font-size: 18px;
+      text-align: left;
+      border: 1px solid #ddd;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Table header style */
+    th, td {
+      padding: 12px 15px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f3f3f3;
+    }
+
+    th {
+      background-color: #162052; /* Dark Blue */
+      color: white;
+    }
+
+    td {
+      color: #333; /* Dark gray text for readability */
+    }
+
+    /* Hover effect for rows */
+    tr:hover {
+      background-color: #f1f1f1;
+      transition: background-color 0.3s ease;
+    }
+
+    /* Add style to the table borders */
+    th, td {
+      border-bottom: 1px solid #ddd;
+    }
+
+    /* Centering and spacing */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* URL link styling */
+    td a {
+      color: #ff8c00; /* Orange color for links */
+      text-decoration: none;
+    }
+
+    td a:hover {
+      text-decoration: underline;
+    }
+    </style>
+</body>
+</html>
