@@ -26,7 +26,7 @@ app.use(express.json());
 app.use(cookieParser());
 // Routes
 app.post('/login', authenticate, (req, res) => {
-    res.json({ message: 'Logged in successfully!' });
+    res.json({ message: 'Logged in Successfully!' });
 });
 app.delete('/logout', (req, res) => {
     res.clearCookie('jwt');
