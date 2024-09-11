@@ -4,7 +4,7 @@
       <h1 class="display-4 fw-bold text-body-emphasis" id="text">
         Take W's with KingSurf
       </h1>
-      <div class="col-lg-6 mx-auto">
+      <div class="col-lg-6 mx-auto" data-aos="flip-right" data-aos-duration="3000" >
         <p class="lead mb-4 text-white">
           Discover the Passion Behind KingSurf At KingSurf, our story is deeply
           rooted in a profound love for the ocean. The waves have always been

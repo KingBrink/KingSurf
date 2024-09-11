@@ -11,7 +11,7 @@
 <script>
 import FooterCompVue from './components/FooterComp.vue';
 import LoaderCompVue from './components/LoaderComp.vue';
-import NavbarcompVue from './components/Navbarcomp.vue';
+import NavbarcompVue from './components/NavbarComp.vue';
 export default {
   components : {
     NavbarcompVue,

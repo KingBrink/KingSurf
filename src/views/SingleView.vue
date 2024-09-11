@@ -33,7 +33,8 @@
     </div>
 </template>
 <script>
-import addToCartBtn from '../components/addToCartBtn.vue'
+import AddToCartBtn from '../components/AddToCartBtn.vue';
+
 export default {
     components : {
         addToCartBtn
