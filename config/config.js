@@ -1,15 +1,18 @@
-import { config } from "dotenv";
-config();
-import mysql from "mysql2";
+import { createPool } from "mysql2";
+import 'dotenv/config'
 
-
-const pool = mysql.createPool({
+const connection = createPool({
     host: process.env.host,
     database: process.env.dbName,
     user: process.env.userDb,
     password: process.env.pwdDb,
     multipleStatements: false,
     connectionLimit: 50
-}).promise()
+})
 
-export { pool };
+connection.on('connection', (pool) => {
+    if (!pool) throw new Error('Couldn\'t connect to the database, please try again later')
+})
+export {
+    connection
+}
