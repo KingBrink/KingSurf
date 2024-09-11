@@ -1,29 +1,39 @@
 <template>
- <section>
-        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1800">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="https://kingbrink.github.io/all-images/images/land6.jpg" loading="lazy" class="d-block w-100 carousel-img" alt="...">
-              <div class="carousel-caption">
-                <h3 class="animate-pop1">ELITE.</h3>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <img src="https://kingbrink.github.io/all-images/images/land8.jpg" loading="lazy" class="d-block w-100 carousel-img" alt="...">
-              <div class="carousel-caption">
-                <h3 class="animate-pop2">ULTIMATE.</h3>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <img src="https://kingbrink.github.io/all-images/images/land2.jpg" loading="lazy" class="d-block w-100 carousel-img" alt="...">
-              <div class="carousel-caption">
-                <h3 class="animate-pop3">EXCLUSIVE.</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+  <div id="landing">
 
+    <div class="container pt-5">
+
+      <h1 class="text-white display-2 fw-bold pt-5" id="animate">KingSurf Store</h1>
+
+      <div class="d-flex justify-content-center my-2">
+        <dividerCompVue />
+      </div>
+      
+
+
+      
+      <textRenderVue data-compTxt RenderContent="Where every wave begins with the perfect board!"/>
+
+      <router-link to="/login">
+
+        <ButtonCompVue btnContent="login!" data-animate/>
+        
+      </router-link>
+
+      <router-link to="/about">
+
+        <ButtonCompVue btnContent="Know more" data-animate/>
+
+      </router-link>
+
+
+      <div class="d-flex justify-content-center my-2">
+        <dividerCompVue />
+      </div>
+
+      
+    </div>
+  </div>
 </template>
 
 <script>
@@ -45,72 +55,68 @@ export default {
 
 <style scoped>
 
-.carousel-img {
-    height: 100vh; /* Adjust to the desired height */
-    object-fit: cover;
-  }
+#landing{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-image: url('https://kingbrink.github.io/all-images/images/surfing.jpg');
+  min-height: 100vh !important;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-image: fill 0 linear-gradient(rgba(0, 0, 0, 0.266) 50%, rgba(0, 0, 0, 0.329));
+}
 
-  .carousel-caption {
-    position: absolute;
-    top: 50vh; /* Positions the heading vertically at 40% of the viewport height */
-    left: 5%; /* Positions the heading towards the left */
-    transform: translateY(-50%); /* Centers the caption vertically */
-    text-align: left; /* Aligns the text to the left */
-    z-index: 10;
-  }
+#animate{
+  animation-name: onload;
+  animation-duration: 0.7s;
+}
 
-  .carousel-caption h3 {
-    color: #333333;
-    padding: 10px 20px;
-    font-size: 3rem; /* Increases the heading size */
-    opacity: 0; /* Start hidden for animation */
-  }
+[data-compTxt]{
+  animation-name: onload;
+  animation-duration: 1s;
+  color: white !important;
+  text-align: center;
+}
 
-  /* Custom Pop Animations */
-  @keyframes pop-in {
-    0% {
-      transform: scale(0.5);
-      opacity: 0;
-    }
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
+[data-animate]{
+  animation-name: onload;
+  animation-duration: 1.25s;
+  color: white !important;
+}
 
-  @keyframes fade-up {
-    0% {
-      transform: translateY(50px);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
+h3 {
+  margin: 40px 0 0;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
 
-  @keyframes zoom-in {
-    0% {
-      transform: scale(0.8);
-      opacity: 0;
-    }
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
+@keyframes onload {
+  from {
+    opacity: 0.1;
+    transform: translateY(190px);
   }
+  to{
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
 
-  /* Apply Different Animations */
-  .animate-pop1 {
-    animation: pop-in 1s forwards 0.5s; /* Slight delay for effect */
-  }
+@media (max-width: 555px) {
 
-  .animate-pop2 {
-    animation: fade-up 1s forwards 0.5s;
+  #mediaIconContainer{
+    display: flex;
+    flex-direction: column;
   }
-
-  .animate-pop3 {
-    animation: zoom-in 1s forwards 0.5s;
-  }
- 
+}
 </style>

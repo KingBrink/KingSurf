@@ -42,11 +42,11 @@
                     <div class="card mx-5 shadow" id="media">
                         <h5 class="card-header text-start">Subscriptions</h5>
                         <div class="card-body">
-                            <p class="card-text text-start"><i class="fa-solid fa-truck-fast fa-lg mx-2" style="color: #FFD43B;"></i> Prime Shipping</p>
-                            <p class="card-text text-start"><i class="fa-regular fa-star fa-lg mx-2" style="color: #FFD43B;"></i> Deluxe Customer</p>
-                            <p class="card-text text-start"><i class="fa-solid fa-w fa-lg mx-2" style="color: #B197FC;"></i> KingSurf Gold</p>
+                            <p class="card-text text-start"><i class="fa-solid fa-truck-fast fa-lg mx-2" style="color: #FFD43B;"></i> Elite Shipping</p>
+                            <p class="card-text text-start"><i class="fa-regular fa-star fa-lg mx-2" style="color: #FFD43B;"></i> Elite client</p>
+                            <p class="card-text text-start"><i class="fa-solid fa-w fa-lg mx-2" style="color: #B197FC;"></i> KingSurf Premium</p>
                             <hr />
-                            <p class="card-text text-center text-black-50">Thank you for choosing KingSurf we appreciate the support</p>
+                            <p class="card-text text-center text-black-50">Thank you for Choosing KingSurf</p>
                         </div>
                     </div>
                     <div class="card mx-5 shadow mt-3" id="media">
@@ -63,7 +63,7 @@
 
                             <div class="card-body" v-for="cart in $store.state.cartState" v-bind:key="cart.prodID">
                                 <p class="card-text text-start fw-bold">{{ cart.prodName }}</p>
-                                <p class="card-text text-start"><i class="fa-solid fa-credit-card fa-lg" style="color: #B197FC;"></i> Deluxe client</p>
+                                <p class="card-text text-start"><i class="fa-solid fa-credit-card fa-lg" style="color: #B197FC;"></i> Elie client</p>
                                 <p class="card-text text-start"><i class="fa-solid fa-truck-fast fa-lg" style="color: #FFD43B;"></i> 1 day shipping</p>
                             </div>
 

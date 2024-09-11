@@ -1,61 +1,61 @@
 <template>
-  <div class="" id="formBody">
-      <div class="container col-xl-10 col-xxl-8 px-4 py-5">
-          <div class="row align-items-center g-lg-5 py-5">
-            <div class="col-md-10 mx-auto col-lg-5 py-5" id="form">
-                <div class="form-floating mb-3">
-                  <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com" v-model="user_email">
-                  <label for="floatingEmail">Email address</label>
-                </div>
-                <div class="form-floating mb-3">
-                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password" v-model="user_password">
-                  <label for="floatingPassword">Password</label>
-                </div>
-                <div class="form-floating mb-3">
-                  <input type="password" class="form-control" id="floatingRole" placeholder="Role" v-model="user_role" disabled>
-                  <label for="floatingRole">Identity code</label>
-                </div>
-                <div class="form-floating mb-3">
-                  <input type="text" class="form-control" id="floatingRole" placeholder="Specify your role to access as admin" v-model="user_role" v-if="this.user_email === 'JD1@gmail.com'">
-                  <label for="floatingRole" v-if="this.user_email === 'JD1@gmail.com'">Specify your role to access as admin</label>
-                </div>
-                <div class="d-flex gap-1 mt-2">
-                  <button class="w-100 btn" type="submit" @click="loginUser()">Login</button>
-                </div>
-                <hr class="my-4">
-                <small>No account?<router-link to="/signup"  class="text-white">Click here to create an account</router-link></small>
-              <div id="eerTxt"></div>
+    <div class="" id="formBody">
+        <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+            <div class="row align-items-center g-lg-5 py-5">
+              <div class="col-md-10 mx-auto col-lg-5 py-5" id="form">
+                  <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com" v-model="user_email">
+                    <label for="floatingEmail">Email address</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" v-model="user_password">
+                    <label for="floatingPassword">Password</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="floatingRole" placeholder="Role" v-model="user_role" disabled>
+                    <label for="floatingRole">Identity code</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingRole" placeholder="Specify your role to access as admin" v-model="user_role" v-if="this.user_email === 'JD1@gmail.com'">
+                    <label for="floatingRole" v-if="this.user_email === 'JD1@gmail.com'">Specify your role to access as admin</label>
+                  </div>
+                  <div class="d-flex gap-1 mt-2">
+                    <button class="w-100 btn" type="submit" @click="loginUser()">Login</button>
+                  </div>
+                  <hr class="my-4">
+                  <small>No account?<router-link to="/signup"  class="text-white">Click here to create an account</router-link></small>
+                <div id="eerTxt"></div>
+              </div>
             </div>
           </div>
-        </div>
-  </div>
+    </div>
 </template>
 <script>
 export default {
 
-  data(){
-    return {
-      user_id : null,
-      user_profile : '',
-      user_email : '',
-      user_password : '',
-      user_role : 'user',
-      user_image : ''
+    data(){
+      return {
+        user_id : null,
+        user_profile : '',
+        user_email : '',
+        user_password : '',
+        user_role : 'user',
+        user_image : ''
+      }
+    },
+    methods : {
+      loginUser(){
+        // console.log(this.$data.user_profile)
+        this.$store.dispatch('loginUser', this.$data)
+      }
     }
-  },
-  methods : {
-    loginUser(){
-      // console.log(this.$data.user_profile)
-      this.$store.dispatch('loginUser', this.$data)
-    }
-  }
-  
+    
 }
 </script>
 <style scoped>
 
 #formBody {
-  background-image: url('https://cdn-images.imagevenue.com/3f/a1/52/ME17SWB0_o.png');
+  background-image: url("https://kingbrink.github.io/all-images/images/maldives.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh;

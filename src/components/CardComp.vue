@@ -9,7 +9,7 @@
             <!-- <button @click="sortByPcs()" id="sortBy" class="mx-2">Gaming Desktop PC</button> -->
             <div class="dropdown">
                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa-solid fa-filter fa-lg" style="color: #000000;"></i> Filter
+                    <i class="fa-solid fa-filter fa-lg" style="color: #000000;"></i> Price
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" @click="sortBy()">Low to high</a></li>

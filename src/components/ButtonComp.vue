@@ -1,11 +1,11 @@
 <template>
-  <button id="btn" class="btn mx-3 mt-3">{{ btnContent }}</button>
+    <button id="btn" class="btn mx-3 mt-3">{{ btnContent }}</button>
 </template>
 <script>
 export default {
-props: {
-  btnContent: String
-}
+  props: {
+    btnContent: String
+  }
 }
 </script>
 <style scoped>
