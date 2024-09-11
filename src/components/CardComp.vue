@@ -24,7 +24,7 @@
 
             <div class="card m-1" id="cardBody" style="width: 18rem;" v-for='product in searchByName() || sortBy() || HightToLow()' v-bind:key='product.product_id'>
 
-                <img :src="product.product_img" class="card-img-top" :alt="product.product_name" loading="lazy" id="productImg">
+                <img :src="product.product_img" class="card-img-top" :alt="product.product_name" loading="lazy" id="productImg" data-aos="flip-left" data-aos-duration="3000">
 
                 <div class="card-body border-top">
     

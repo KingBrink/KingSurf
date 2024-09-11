@@ -1,6 +1,6 @@
 <template>
     <footer class="bg-body-tertiary d-flex justify-content-center">
-            <p class="mb-2 text-black text-center">&copy;{{this.year()}} | All rights reserved</p>
+            <p class="mb-2 text-black text-center">&copy;{{this.year()}} | KingSurf</p>
     </footer>
 </template>
 <script>

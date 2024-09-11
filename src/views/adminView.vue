@@ -181,7 +181,8 @@
 </template>
 <script>
 import ChartComp from '../components/ChartComp.vue'
-import addProductComp from '../components/addProductComp.vue'
+import AddProductComp from '../components/AddProductComp.vue';
+
 export default {
 
     data(){
