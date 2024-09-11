@@ -1,34 +1,34 @@
 <template>
-  <div v-if="!loaded" class="loader">
-    <div class="dot-spinner">
-      <div class="dot-spinner__dot"></div>
-      <div class="dot-spinner__dot"></div>
-      <div class="dot-spinner__dot"></div>
-      <div class="dot-spinner__dot"></div>
-      <div class="dot-spinner__dot"></div>
-      <div class="dot-spinner__dot"></div>
-      <div class="dot-spinner__dot"></div>
-      <div class="dot-spinner__dot"></div>
-  </div>
-  </div>
-</template>
-
-<script>
-export default {
-  data() {
-    return {
-      loaded: false // Initial state: page not loaded
-    };
-  },
-  mounted() {
-    // Simulate a 5-second delay before displaying content
-    setTimeout(() => {
-      // Set loaded to true after 2 seconds
-      this.loaded = true; 
-    }, 2000);
-  }
-};
-</script>
+    <div v-if="!loaded" class="loader">
+      <div class="dot-spinner">
+        <div class="dot-spinner__dot"></div>
+        <div class="dot-spinner__dot"></div>
+        <div class="dot-spinner__dot"></div>
+        <div class="dot-spinner__dot"></div>
+        <div class="dot-spinner__dot"></div>
+        <div class="dot-spinner__dot"></div>
+        <div class="dot-spinner__dot"></div>
+        <div class="dot-spinner__dot"></div>
+    </div>
+    </div>
+  </template>
+  
+  <script>
+  export default {
+    data() {
+      return {
+        loaded: false // Initial state: page not loaded
+      };
+    },
+    mounted() {
+      // Simulate a 5-second delay before displaying content
+      setTimeout(() => {
+        // Set loaded to true after 2 seconds
+        this.loaded = true; 
+      }, 2000);
+    }
+  };
+  </script>
   
   <style scoped>
   /* CSS styles for the loader */

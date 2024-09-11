@@ -1,64 +1,64 @@
 <template>
-  <div id="landing">
-      <div class="container col-xl-10 col-xxl-8 px-4 py-5">
-          <div class="row align-items-center g-lg-5 py-5">
-            <div class="col-lg-7 text-center text-lg-start">
-              <h1 class="display-4 fw-bold lh-1 text-white mb-3">Become a member of KingSuf</h1>
-              <p class="col-lg-10 fs-4 text-white">Get access to out Best surfboards, Sign up and begin right away</p>
-            </div>
-            <div class="col-md-10 mx-auto col-lg-5" id="bgForm">
-                <div class="form-floating mb-3">
-                  <input type="text" class="form-control" id="floatingName" placeholder="Your name" v-model="user_profile" data-inp>
-                  <label for="floatingName">Name</label>
-                </div>
-                <div class="form-floating mb-3">
-                  <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com" v-model="user_email" data-inp>
-                  <label for="floatingEmail">Email address</label>
-                </div>
-                <div class="form-floating mb-3">
-                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password" v-model="user_password" data-inp>
-                  <label for="floatingPassword">Password</label>
-                </div>
-                <div class="form-floating mb-3">
-                  <input type="password" class="form-control" id="floatingRole" placeholder="Role" v-model="user_role" disabled data-inp>
-                  <label for="floatingRole">Identity code</label>
-                </div>
-                <div class="form-floating mb-3">
-                  <input type="text" class="form-control" id="floatingImgInput" placeholder="image" v-model="user_image" data-inp>
-                  <label for="floatingImgInput">image</label>
-                </div>
-                <div class="d-flex gap-1 mt-2">
-                  <button class="w-100 btn btn-lg" type="submit" id="btn" v-if="this.user_profile.length === 0 || this.user_email.length === 0 || this.user_password.length === 0 || this.user_password.length < 5 || this.user_image.length === 0" disabled>Fill in your details</button>
-                  <button @click="signUser()" class="w-100 btn btn-lg btn-primary" id="btn" v-else>Sign up <i class="fa-regular fa-user fa-bounce fa-lg" style="color: #000000;"></i></button>
-                </div>
-                <hr class="my-4">
-                <small><router-link to="/login" class="text-white">I have an account</router-link></small>
-              <div id="eerTxt"></div>
+    <div id="landing">
+        <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+            <div class="row align-items-center g-lg-5 py-5">
+              <div class="col-lg-7 text-center text-lg-start">
+                <h1 class="display-4 fw-bold lh-1 text-white mb-3">Sign up now with KingStore</h1>
+                <p class="col-lg-10 fs-4 text-white">Get access to top quality surfboards!</p>
+              </div>
+              <div class="col-md-10 mx-auto col-lg-5" id="bgForm">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingName" placeholder="Your name" v-model="user_profile" data-inp>
+                    <label for="floatingName">Name</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com" v-model="user_email" data-inp>
+                    <label for="floatingEmail">Email address</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" v-model="user_password" data-inp>
+                    <label for="floatingPassword">Password</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="floatingRole" placeholder="Role" v-model="user_role" disabled data-inp>
+                    <label for="floatingRole">Identity code</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingImgInput" placeholder="image" v-model="user_image" data-inp>
+                    <label for="floatingImgInput">image</label>
+                  </div>
+                  <div class="d-flex gap-1 mt-2">
+                    <button class="w-100 btn btn-lg" type="submit" id="btn" v-if="this.user_profile.length === 0 || this.user_email.length === 0 || this.user_password.length === 0 || this.user_password.length < 5 || this.user_image.length === 0" disabled>Fill in your details</button>
+                    <button @click="signUser()" class="w-100 btn btn-lg btn-primary" id="btn" v-else>Sign up <i class="fa-regular fa-user fa-bounce fa-lg" style="color: #000000;"></i></button>
+                  </div>
+                  <hr class="my-4">
+                  <small><router-link to="/login" class="text-white">I have an account</router-link></small>
+                <div id="eerTxt"></div>
+              </div>
             </div>
           </div>
-        </div>
-  </div>
+    </div>
 </template>
 <script>
 import router from '@/router';
 export default {
 
-  data(){
-    return {
-      user_profile : '',
-      user_email : '',
-      user_password : '',
-      user_role : 'user',
-      user_image : ''
+    data(){
+      return {
+        user_profile : '',
+        user_email : '',
+        user_password : '',
+        user_role : 'user',
+        user_image : ''
+      }
+    },
+    methods : {
+      signUser(){
+        this.$store.dispatch('SignUser', this.$data)
+        router.push('/login')
+      }
     }
-  },
-  methods : {
-    signUser(){
-      this.$store.dispatch('SignUser', this.$data)
-      router.push('/login')
-    }
-  }
-  
+    
 }
 </script>
 <style scoped>
@@ -68,7 +68,7 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-image: url('https://cdn-images.imagevenue.com/fe/e9/59/ME17RH4H_o.png');
+  background-image: url('https://kingbrink.github.io/all-images/images/land7.jpg');
   min-height: 100vh !important;
   background-size: cover;
   background-repeat: no-repeat;
@@ -100,5 +100,5 @@ export default {
 #btn:hover{
   transform: scale(110%);
 }
-    
+
 </style>
