@@ -5,8 +5,6 @@
         <div class="mt-5 pt-5 px-2 w-100 container" id="searchBar">
 
             <input type="search" class="form-control form-control-dark mx-3 w-50" placeholder="Search by categoies or product names" aria-label="Search" v-model="search" @change="searchByName()">
-            <!-- <button @click="sortBy()" id="sortBy" class="mx-2">sort by price</button> -->
-            <!-- <button @click="sortByPcs()" id="sortBy" class="mx-2">Gaming Desktop PC</button> -->
             <div class="dropdown">
                 <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fa-solid fa-filter fa-lg" style="color: #000000;"></i> Price
@@ -16,6 +14,16 @@
                     <li><a class="dropdown-item" @click="HightToLow()">High to low</a></li>
                 </ul>
             </div>
+            <div>
+          <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Sort by Name
+          </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" @click="sortByNameAsc">Ascending</a></li>
+          <li><a class="dropdown-item" @click="sortByNameDesc">Descending</a></li>
+        </ul>
+        </div>
 
 
         </div>
@@ -80,6 +88,7 @@ export default {
                 products.sort((a, b) => a.product_price - b.product_price);
             }
         },
+        
         fetchProduct(product_id){
             this.$store.dispatch('fetchProduct', product_id)
         },
@@ -93,7 +102,22 @@ export default {
                 products.sort((a, b) => b.product_price - a.product_price );
             }
 
-        }
+        },
+
+        sortByNameDesc(){
+      return this.$store.state.products.sort(function(a,b){
+        console.log(a.product_name);
+        console.log('sorted');
+
+        
+        return b.product_name.localeCompare(a.product_name)
+      })
+    },
+    sortByNameAsc(){
+      return this.$store.state.products.sort(function(a,b){
+        return a.product_name.localeCompare(b.product_name)
+      })
+    }
     },
      mounted(){
         this.fetchProducts(),
