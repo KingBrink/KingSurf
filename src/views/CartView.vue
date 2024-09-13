@@ -40,24 +40,24 @@
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body" v-for="i in getfavs()" v-bind:key="i.prodID" id="scroll">
-                <p>{{ i.prodName }}</p>
-                <img :src="i.prodUrl" height="50" width="50" loading="lazy" class="img img-fluid shadow mx-2 border p-1 my-4"/>
+                <p>{{ i.product_name }}</p>
+                <img :src="i.product_img" height="50" width="50" loading="lazy" class="img img-fluid shadow mx-2 border p-1 my-4"/>
             </div>
         </div>
 
         <div v-for="cart in searchByName() || sortBy()" v-bind:key="cart.prodID" class="mt-3" id="cart">
             <div id="img" class="container">
-                <img :src="cart.prodUrl" height="200" width="200" loading="lazy" class="img img-fluid shadow mx-2 border p-1 my-4"/>
+                <img :src="cart.product_img" height="200" width="200" loading="lazy" class="img img-fluid shadow mx-2 border p-1 my-4"/>
             </div>
             <div id="borderLR" class="mx-3 container">
                 <div class="fw-bold py-3 my-3 px-4">
-                    <div id="prodName"><span>Name:</span> {{ cart.prodName }}</div>
+                    <div id="product_name"><span>Name:</span> {{ cart.product_name }}</div>
                 </div>
                 <div class="py-1 my-3 px-2">
                     <div id="prodPrice"><span>Price:</span> R{{ cart.product_price }}</div>
                 </div>
                 <div class="py-2 my-3 px-4 d-flex gap-2 border-top">
-                    <button @click="addToFavs(cart)" class="btn bg-white shadow border text-white" :title="'add ' + cart.prodName + ' to favourites'"><i class="fa-regular fa-heart fa-lg fa-beat" style="color: #ff0000;"></i></button>
+                    <button @click="addToFavs(cart)" class="btn bg-white shadow border text-white" :title="'add ' + cart.product_name + ' to favourites'"><i class="fa-regular fa-heart fa-lg fa-beat" style="color: #ff0000;"></i></button>
                     <button @click="deleteFromCart(cart.prodID)"  class="btn bg-black text-white w-100">Decrease quantity</button>
                 </div>
             </div>
@@ -113,7 +113,7 @@ export default {
             let storageArr = this.$store.state.cartState;
             let inputX = this.search;
             let resultY = storageArr.filter(cart => {
-                return cart.prodName.toLowerCase().includes(inputX.toLowerCase())
+                return cart.product_name.toLowerCase().includes(inputX.toLowerCase())
             });
             return resultY;
         },

@@ -1,6 +1,6 @@
 <template lang="">
     <div id="cardBody">
-        <div v-for="product of $store.state.product" v-bind:key="product.product_id">
+        <div v-for="product in product" :key="product.product_id">
             <div id="isoParent" class="container">
                 <div id="isolatedDivOne" class="d-flex justify-content-center">
                      <img :src="product.product_img" :alt="product.product_name" class="img img-fluid" id="imgProd"/>
@@ -26,27 +26,36 @@
                     <hr class="my-3 mx-3"/>
                     
                     
-                    <addToCartBtn @click="addToCart(product.product_id)"/>
+                    <addToCartBtn @click="() => addToCart(product.product_id, user_id)" :user_id="user_id"/>
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script>
-import AddToCartBtn from '../components/AddToCartBtn.vue';
 
 export default {
     components : {
-        addToCartBtn
+        // addToCartBtn
+    },
+    computed:{
+        product(){
+            return this.$store.state.product
+        }
     },
     methods : {
-        fetchProduct(product_id){
-            this.$store.dispatch('fetchProduct', product_id)
-        },
+        
         addToCart(product_id, user_id){
             this.$store.dispatch('addToCart', product_id, user_id)
         }
+    },
+    mounted() {
+
+        this.$store.dispatch("fetchProduct", this.$route.params.id)
+
+
     }
+
 }
 </script>
 <style scoped>
