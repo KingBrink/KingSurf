@@ -12,7 +12,7 @@ const app = express();
 const PORT = process.env.MYSQL_ADDON_PORT || 2303;
 // CORS configuration
 const corsOptions = {
-    origin: 'http://localhost:8080',
+    origin: 'https://kingsurf-6c8e0.web.app',
     methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
