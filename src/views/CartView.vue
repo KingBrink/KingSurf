@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-5 pt-5" v-if="$cookies.get('jwt')">
+    <div class="mt-5 pt-5">
 
         <div class="d-flex justify-content-center">
             <input type="search" class="form-control form-control-dark mx-3 w-50 mb-2" placeholder="Search..." aria-label="Search" v-model="search" @change="searchByName()">
@@ -71,9 +71,7 @@
 
     </div>
 
-    <div v-else id="FourOFour" class="container-fluid">
-        <h1 class="display-1">403 Forbidden</h1>
-    </div>
+    
 </template>
 <script>
     import UserProfile from './UserProfile.vue'
@@ -113,7 +111,7 @@ export default {
             let storageArr = this.$store.state.cartState;
             let inputX = this.search;
             let resultY = storageArr.filter(cart => {
-                return cart.product_name.toLowerCase().includes(inputX.toLowerCase())
+                // return cart.product_name.toLowerCase().includes(inputX.toLowerCase())
             });
             return resultY;
         },

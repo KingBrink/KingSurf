@@ -47,11 +47,12 @@
       <div v-if="showUpdateUserModal" class="modal-overlay">
         <form class="modal-content">
           <h3>Update User</h3>
-          <input v-model="currentUser.user_image" type="text" placeholder="Profile URL">
-          <input v-model="currentUser.user_profile" type="text" placeholder="First Name">
-          <input v-model="currentUser.user_email" type="email" placeholder="Email">
-          <input v-model="currentUser.user_password" type="password" placeholder="Password">
-          <button class="btn submit-btn mt-1 mb-1" @click.prevent="updateUser(currentUser)">Save changes</button>
+          <input v-model="this.newUser.user_id" type="text" placeholder="Profile URL">
+          <input v-model="newUser.user_image" type="text" placeholder="Profile URL">
+          <input v-model="newUser.user_profile" type="text" placeholder="First Name">
+          <input v-model="newUser.user_email" type="email" placeholder="Email">
+          <input v-model="newUser.user_password" type="password" placeholder="Password">
+          <button class="btn submit-btn mt-1 mb-1" @click.prevent="updateUser">Save changes</button>
           <button class="btn cancel-btn mt-1 mb-1" @click="closeUpdateUserModal">Cancel</button>
         </form>
       </div>
@@ -160,7 +161,7 @@
           this.showUpdateUserModal = false;
         },
         updateUser() {
-          this.$store.dispatch('updateUser', {...this.currentUser, user_id: this.currentUser.user_id }).then(() => {
+          this.$store.dispatch('updateUser', {id: this.newUser.user_id, data: this.newUser }).then(() => {
             this.showUpdateUserModal = false;
           });
         },

@@ -26,7 +26,7 @@
                     <hr class="my-3 mx-3"/>
                     
                     
-                    <addToCartBtn @click="() => addToCart(product.product_id, user_id)" :user_id="user_id"/>
+                    <AddToCartBtn @click="() => addToCart(product.product_id, user_id)" :user_id="user_id"/>
                 </div>
             </div>
         </div>
@@ -34,9 +34,10 @@
 </template>
 <script>
 
+import AddToCartBtn from '@/components/AddToCartBtn.vue';
 export default {
     components : {
-        // addToCartBtn
+        AddToCartBtn
     },
     computed:{
         product(){

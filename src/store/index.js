@@ -227,16 +227,20 @@ export default createStore({
     async updateUser(context, update){
 
       try {
-        const res = await axios.patch(`https://kingsurf-4.onrender.com/users/${update.user_id}`, update);
+        const res = await (await axios.patch(`https://kingsurf-4.onrender.com/users/${update.id}`, update.data)).data;
+ if(res) {
+context.dispatch('accessUsers')
+console.log("Success")
 
+
+ }
         await swal(`Successfully updated`, `You have successfuly updated  ${res.data.user_profile}`, "success");
 
         window.location.reload();
 
       } catch (error) {
 
-        await swal(`Rejected by database`, `You might have exceed the amount of characters(255)`, "error");
-
+  console.log(error)
       }
 
     },
