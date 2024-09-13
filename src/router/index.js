@@ -38,11 +38,6 @@ const routes = [
     component: () => import('../views/CreateAccView.vue')
   },
   {
-    path: '/admin',
-    name: 'admin',
-    component: () => import('../views/adminView.vue')
-  },
-  {
     path: '/users/:userId',
     name: 'admi',
     component: () => import('../views/SingleUserView.vue')
@@ -57,6 +52,11 @@ const routes = [
     name: 'contact',
     component: () => import('../views/ContactView.vue')
   },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: () => import('../views/Dashboardview.vue')
+  }
 ]
 
 const router = createRouter({

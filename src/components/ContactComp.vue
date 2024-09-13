@@ -1,5 +1,5 @@
 <template><div class="container" id="contact">
-  <h3 id="text">Contact us</h3>
+  <h3 id="text" style="margin-top: 80px;">Contact us</h3>
   <div class="row" style="margin-top: 50px;">
       <div class="col-md-4 py-3 py-md-0">
           <div class="card">

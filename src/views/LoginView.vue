@@ -11,14 +11,14 @@
                     <input type="password" class="form-control" id="floatingPassword" placeholder="Password" v-model="user_password">
                     <label for="floatingPassword">Password</label>
                   </div>
-                  <div class="form-floating mb-3">
+                  <!-- <div class="form-floating mb-3">
                     <input type="password" class="form-control" id="floatingRole" placeholder="Role" v-model="user_role" disabled>
                     <label for="floatingRole">Identity code</label>
                   </div>
                   <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="floatingRole" placeholder="Specify your role to access as admin" v-model="user_role" v-if="this.user_email === 'JD1@gmail.com'">
                     <label for="floatingRole" v-if="this.user_email === 'kyle@16gmail.com'">Specify your role to access as admin</label>
-                  </div>
+                  </div> -->
                   <div class="d-flex gap-1 mt-2">
                     <button class="w-100 btn" type="submit" @click="loginUser()">Login</button>
                   </div>
