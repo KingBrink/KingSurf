@@ -13,7 +13,7 @@ const PORT = process.env.MYSQL_ADDON_PORT || 2303;
 // CORS configuration
 const corsOptions = {
     origin: 'http://localhost:8080',
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 };
